@@ -15,62 +15,38 @@ import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 
 @Entity(name="Bateau")
-	 public  class Bateau  implements Serializable {
-		 @SuppressWarnings("unused")
-		private String nom;
+public  class Bateau  implements Serializable {
+	@SuppressWarnings("unused")
+	private String nom;
 
-	     @Id
-	     @GeneratedValue(strategy = GenerationType.AUTO)
-	     private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-	     @OneToMany(mappedBy="bateau")
-	     private Collection<Marin> equipage ;
+	@OneToMany(mappedBy="bateau")
+	private Collection<Marin> equipage ;
 
-		public String getNom() {
-			return nom;
-		}
+	public String getNom() {
+		return nom;
+	}
 
-		public void setNom(String nom) {
-			this.nom = nom;
-		}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
-		public Long getId() {
-			return id;
-		}
+	public Long getId() {
+		return id;
+	}
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-		public Collection<Marin> getEquipage() {
-			return equipage;
-		}
+	public Collection<Marin> getEquipage() {
+		return equipage;
+	}
 
-		public void setEquipage(Collection<Marin> equipage) {
-			this.equipage = equipage;
-		}
-		@SuppressWarnings("deprecation")
-		public static void main(String[] args) {
-			// TODO Auto-generated method stub
-			 EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp-JPA") ;
-
-		        EntityManager em1 = emf.createEntityManager() ;
-            
-		      Bateau b=new Bateau();
-		        b.setNom("tassili");
-		        Marin marin =  new Marin() ;
-		        Calendar cal = Calendar.getInstance();
-		        cal.set(1989, 5,15);
-		        marin.setDatedenaissance(new Date(89,5,15));
-		        marin.setNom("hammoum");
-		        marin.setPrenom("Karim");
-		        em1.getTransaction().begin() ;
-		        em1.persist(b) ;
-		        em1.persist(marin);
-		        marin.setBateau(b);
-		        
-		        
-		        em1.getTransaction().commit() ;
-		}
-	     
+	public void setEquipage(Collection<Marin> equipage) {
+		this.equipage = equipage;
+	}
 }
